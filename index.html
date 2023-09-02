@@ -3,33 +3,60 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Weather App</title>
+  <title>My TodoList Creator</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-  <div class="container">
-    <h1>Weather App</h1>
-
-    <form>
-      <input type="text" id="city-input" placeholder="Enter City">
-      <input type="submit" value="Get Weather">
-    </form>
-
-    <div id="weather-data">
-      <div class="icon">
-        <!-- <img src="http://openweathermap.org/img/wn/01d.png" alt="Weather Icon"> -->
-      </div>
-      <div class="temperature"></div>
-      <div class="description"></div>
-      <div class="details">
-        <!-- <div>Feels like: 23C</div>
-        <div>Humidity: 40%</div>
-        <div>Wind speed: 5m/s</div> -->
-      </div>
+  <section class="title-section">
+    <div class="header">
+      <div class="M letter">M</div>
+      <div class="Y letter">Y</div>
+      <div class="ls letter">_</div>
+      <div class="T letter">T</div>
+      <div class="A letter">A</div>
+      <div class="S letter">S</div>
+      <div class="K letter">K</div>
+      <div class="L letter">L</div>
+      <div class="I letter">I</div>
+      <div class="S letter">S</div>
+      <div class="T letter">T</div>
+      <div class="ss letter">_</div>
+      <div class="C letter">C</div>
+      <div class="R letter">R</div>
+      <div class="E letter">E</div>
+      <div class="A letter">A</div>
+      <div class="T letter">T</div>
+      <div class="O letter">O</div>
+      <div class="R letter">R</div>
     </div>
-  </div>
+  </section>
+  <header>
+    <div id="todo-app-container">
+        <div class="todo-app-header">
+            <div class="task-input">
+
+              <input type="text" class="todo-input" id="js-todo-input" placeholder="Input your task here...">
+              
+              <div class="period-input">
+                <input type="time" class="time-input period" id="js-time-input">
+                <input type="date" class="date-input period" id="js-date-input">
+              </div>
+            </div>
   
-  <script src="index.js"></script>
+            <div class="submit">
+              <button type="submit" class="submit-btn" id="js-add-todo">ADD TASK</button>
+            </div>
+        </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+      <div class="task-title no-task" id="js-task-title">No Available task,fill the inputs above to add new task.</div>
+      <div class="task-list" id="js-task-list"></div>
+    </div>
+  </main>
+
+  <script src="./index.js"></script>
 </body>
 </html>
