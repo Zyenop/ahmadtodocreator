@@ -7,7 +7,7 @@
 body {
   height: 100vh;
   width: 100vw;
-  background-color: lightblue;
+  background-color: #f7f7f7;
 }
 
 .title-section {
@@ -167,7 +167,7 @@ main {
   min-height: 70vh;
   margin-top: 10vh;
   width: 100vw;
-  background-color: skyblue;
+  background-color: azure;
   border: 2px dotted blue;
   box-shadow: 3px 0px 10px 1px rgba(17,17,51, 0.525);
   border-radius: 15vw 15vw 0vw 0vw;
@@ -185,6 +185,7 @@ main {
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 2vw;
   border: 2px solid #0000ff;
   box-shadow: 0px 4px 8px rgba(51, 51, 51, 0.525);
 }
@@ -206,8 +207,7 @@ main {
   height: 4vh;
   border: none;
   width: 17vw;
-  border: 1px solid blue;
-  box-shadow: 0px 4px 8px rgba(51, 51, 51, 0.525);
+  outline: none;
 }
 
 .time-input {
@@ -223,7 +223,9 @@ main {
   border: none;
   border: 1px solid blue;
   border-radius: 7px 0px 0px 7px;
-  box-shadow: 0px 4px 8px rgba(51, 51, 51, 0.525);
+  width: 60%;
+  outline: none;
+  border: none;
 }
 
 .submit {
@@ -244,7 +246,7 @@ button {
 .submit-btn {
   width: 11vw;
   border: none;
-  font-size: 12px;
+  font-size: 10px;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   border-radius: 5px;
   background-color: blue;
