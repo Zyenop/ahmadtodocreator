@@ -383,7 +383,7 @@ displayTodos(addClick,taskListEl)
       Notification.requestPermission().then(permission => {
         if (permission == "granted") {
           setInterval(showNotification, 
-            60000)
+            20000)
         } else if (permission == "denied") {
           alert('Pls allow tasklist creator to send notification to receive reminder when it\'s time.')
         }
