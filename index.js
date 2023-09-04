@@ -1,9 +1,11 @@
 const taskListEl = document.getElementById("js-task-list");
 const taskInputEl = document.getElementById("js-todo-input");
-const timeInputEl = document.getElementById("js-time-input");
-const dateInputEl = document.getElementById("js-date-input");
+const timeDateInputEl = document.getElementById("time-date-input");
+/* const dateInputEl = document.getElementById("js-date-input");
+const timeInputEl = document.getElementById("js-time-input"); */
 const addTodoBtn = document.getElementById("js-add-todo");
 const titleEl = document.getElementById("js-task-title");
+const testDates = document.getElementById("time-test")
 addTodoBtn.addEventListener('click', () => {
   const addClick = true;
   updateTodo();
@@ -29,14 +31,11 @@ displayTodos(addClick,taskListEl)
     todos.unshift(todoslide);
 
     const task = taskInputEl.value;
-    const time = timeInputEl.value;
-    const date = dateInputEl.value;
+    const timeDate = timeDateInputEl.value;
     if (task == "") {
       alert("Pls Input a task.");
-    } else if (time == "") {
-      alert("Pls Input the time.");
-    } else if (date == "") {
-      alert("Pls Input a date.");
+    } else if (timeDate == "") {
+      alert("Pls Input the time and date.");
     } else {
       const {taskSlideEl, taskEl, editEl, deleteEl} = createTodoElement(todoslide);
       taskListEl.prepend(taskSlideEl)
@@ -48,20 +47,34 @@ displayTodos(addClick,taskListEl)
   
 
   function createTodoElement(todoslide, task, time, date) {
+    const datetest = new Date(timeDateInputEl.value)
+    console.log(datetest.getFullYear());
+    const year = datetest.getFullYear();
+    console.log(datetest.getMonth() + 1);
+    const month = datetest.getMonth() + 1;
+    console.log(datetest.getDate());
+    const day = datetest.getDate();
+    console.log(datetest.getHours());
+    const hour = datetest.getHours();
+    console.log(datetest.getMinutes());
+    const minutes = datetest.getMinutes();
+    const period = datetest.getTime();
+
+    const normalDate = day + '/' + month + '/' + year;
+    const normalTime = hour + ':' + minutes;
+    console.log(normalDate);
+    console.log(normalTime);
+
+
     const taskSlideEl = document.createElement("div");
     taskSlideEl.classList.add("task-slide");
     const checkbox = document.createElement("input");
     checkbox.type = "checkbox";
     checkbox.checked = todoslide.complete;
-    if (taskInputEl != ""){
-      todoslide.task = taskInputEl.value;
-      todoslide.time = timeInputEl.value;
-      todoslide.date = dateInputEl.value;
-    } else if (taskInputEl == "") {
-      todoslide.task = task;
-      todoslide.time = time;
-      todoslide.date = date;
-    }
+    todoslide.task = taskInputEl.value;
+    todoslide.time = normalTime;
+    todoslide.date = normalDate;
+    todoslide.period = period;
     save();
 
     if (todoslide.complete) {
@@ -109,8 +122,9 @@ displayTodos(addClick,taskListEl)
     listItemDateEl.innerHTML = todoslide.date;
 
     taskInputEl.value = "";
-    timeInputEl.value = "";
-    dateInputEl.value = "";
+    timeDateInputEl.value = "";
+    /* timeInputEl.value = "";
+    dateInputEl.value = ""; */
 
     checkbox.addEventListener('change', () => {
       todoslide.complete = checkbox.checked
@@ -239,8 +253,9 @@ displayTodos(addClick,taskListEl)
     listItemDateEl.innerHTML = `D: ${date}`;
 
     taskInputEl.value = "";
-    timeInputEl.value = "";
-    dateInputEl.value = "";
+    timeDateInputEl.value = "";
+    /* timeInputEl.value = "";
+    dateInputEl.value = ""; */
 
     checkbox.addEventListener('change', () => {
       todoslide.complete = checkbox.checked
@@ -304,8 +319,6 @@ displayTodos(addClick,taskListEl)
       const time = todoslide.time;
       const date = todoslide.date;
 
-      console.log(task, time, date);
-
       const { taskSlideEl } = recreateTodoElement(todoslide,task,time,date);
 
       taskListEl.append(taskSlideEl)
@@ -333,4 +346,73 @@ displayTodos(addClick,taskListEl)
     if (data) {
       todos = JSON.parse(data)
     }
+  }
+
+  // Notification code 
+  window.addEventListener('load', () => {
+    document.querySelector('.notification-permission-box').style.top = "0"
+  }, 1000);
+
+  document.querySelector(".notification-button").onclick = async () => {
+    localStorage.setItem('notifyStatus', 'True');
+    notifyTrue();
+    allowNotification();
+  }
+
+  function notifyTrue() {
+    if (localStorage.getItem('notifyStatus', 'True')) {
+      document.querySelector(".notification-permission-box").style.display = 'none';
+    }
+  }
+  notifyTrue();
+
+  document.querySelector("#cancel").onclick = async () => {
+    localStorage.setItem('notifyStatus', 'False');
+    notifyFalse();
+  }
+
+  function notifyFalse() {
+    if (localStorage.getItem('notifyStatus', 'False')) {
+      document.querySelector(".notification-permission-box").style.display = 'none'
+    }
+  }
+  notifyFalse();
+  
+  function allowNotification() {
+    if (localStorage.getItem('notifyStatus') == "True") {
+      Notification.requestPermission().then(permission => {
+        if (permission == "granted") {
+          setInterval(showNotification, 
+            60000)
+        } else if (permission == "denied") {
+          alert('Pls allow tasklist creator to send notification to receive reminder when it\'s time.')
+        }
+      })
+    } else if (localStorage.getItem('notifyStatus') == "False") {
+      alert("You will not be notified when it's time to perform your task if you do not give permission.")
+    }
+  }
+
+  allowNotification()
+
+  function showNotification() {
+    save();
+    const list = JSON.parse(localStorage.getItem('todosmi'));
+    for (let i = 0; i < list.length; i++) {
+      const slide = list[i];
+      const setTime = slide["period"];
+      if (new Date().getTime() >= setTime && slide["complete"] === false) {
+        new Notification('My Tasklist Creator', {
+          body: `It is time for you to ${slide["task"]}`,
+          icon: "profile.png",
+        });
+      }
+    }
+  }
+
+  function notify() {
+    console.log("Yes")
+    new Notification('Ahmad', {
+      body: `It is time for you to ${slide["task"]}`,
+    });
   }

@@ -7,7 +7,25 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
+  <div class="notification-permission-box">
+    <div class="info-section">
+      <div class="notification-permission-icon-box">
+        <img class="notification-permission-icon" src="Bushroh.jpg" alt="">
+      </div>
+  
+      <div class="notification-permission-message">
+        <p class="permission-message">Please Your Tasklist creator would like to send you a notification. Click allow to give permission. </p>
+      </div>
+    </div>
+    <div class="notification-actions">
+      <button id="allow" class="notification-button">Allow</button>
+      <button id="cancel" class="notification-button">Cancel</button>
+    </div>
+  </div>
+  
   <section class="title-section">
+    <div class="logo-section"><img class="logo" src="default.png" alt=""></div>
     <div class="header">
       <div class="M letter">M</div>
       <div class="Y letter">Y</div>
@@ -38,8 +56,9 @@
               <input type="text" class="todo-input" id="js-todo-input" placeholder="Input your task here...">
               
               <div class="period-input">
-                <input type="time" class="time-input period" id="js-time-input">
-                <input type="date" class="date-input period" id="js-date-input">
+                <!-- <input type="time" class="time-input period" id="js-time-input">
+                <input type="date" class="date-input period" id="js-date-input"> -->
+                <input type="datetime-local" class="period" id="time-date-input">
               </div>
             </div>
   

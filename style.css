@@ -10,13 +10,89 @@ body {
   background-color: #f7f7f7;
 }
 
+.notification-permission-box {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  position: fixed;
+  width: 60vw;
+  margin-left: 0;
+  top: -200px;
+  background-color: #fff;
+  border: 2px solid #0000ff;
+  border-radius: 5px;
+  z-index: 1000000;
+  left: 20%;
+  color: #0000ff;
+  padding: 5px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  transition: all 0.3s ease-in-out;
+}
+
+.info-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.notification-button {
+  appearance: none;
+  outline: none;
+  border: none;
+  padding: 10px;
+  border: 1px solid #0000ff;
+  border-radius: 3px;
+  color: #fff;
+  background-color: #0000ff;
+  margin: 5px;
+  cursor: pointer;
+}
+
+.notification-permission-icon {
+  width: 10vw;
+  margin: 5px;
+}
+
+.notification-actions {
+  background-color: #ccc;
+  display: flex;
+  justify-content: flex-end;
+}
+
+
 .title-section {
   background-color: none;
   color: #0000ff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2vh 2vw;
 }
 
+.logo {
+  width: 10vw;
+  border-radius: 5vw;
+  transition: all .4s;
+  animation: logo 1s ease-in-out 2.5s infinite alternate;
+}
+
+/* @keyframes logo {
+  0% {
+    transform: scale(1);
+  }
+  30% {
+    transform: scale(1.2);
+  }
+  60% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+ */
 .letter {
-  color: #0000ff;
+  color: #ff0000;
   background-color: #0000ff;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -28,6 +104,7 @@ body {
   display: flex;
   font-size: 24px;
   margin: 10px;
+  padding: 0 3vw;
   justify-content: center;
   font-weight: 900;
 }
@@ -155,7 +232,10 @@ header {
   height: 20vh;
   width: 100vw;
   background-color: azure;
-  border: 2px solid blue;
+  background-image: url(cover.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  border: 2px solid crimson;
   box-shadow: 0px 4px 8px rgba(17,17,51, 0.525);
   border-radius: 0vw 0vw 20vw 20vw;
   display: flex;
@@ -168,7 +248,8 @@ main {
   margin-top: 10vh;
   width: 100vw;
   background-color: azure;
-  border: 2px dotted blue;
+  background-size: contain;
+  border: 2px dotted crimson;
   box-shadow: 3px 0px 10px 1px rgba(17,17,51, 0.525);
   border-radius: 15vw 15vw 0vw 0vw;
   display: flex;
@@ -203,19 +284,13 @@ main {
   align-items: center;
   height: 10vh;
 }
+
 .period {
-  height: 4vh;
+  height: 80%;
   border: none;
   width: 17vw;
   outline: none;
-}
-
-.time-input {
-  border-radius: 0px 7px 0px 0px;
-}
-
-.date-input {
-  border-radius: 0px 0px 7px 0px;
+  border-radius: 0px 7px 7px 0px;
 }
 
 .todo-input {
@@ -276,6 +351,7 @@ button {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  position: relative;
 }
 
 .task-title {
@@ -297,8 +373,10 @@ button {
   color: #ccc;
   background-image: none;
   background-color: #333;
-  top: 60%;
+  font-weight: 700;
+  top: 30vh;
   opacity: 0.5;
+  position: absolute;
 }
 
 .task-list {
@@ -322,6 +400,21 @@ button {
   justify-content: space-between;
   align-items: center;
   position: relative;
+  transition: all .3s ease-in-out;
+  animation: slide 0.2s ease-in;
+}
+
+@keyframes slide {
+  0% {
+    width: 10vw;
+    
+  }
+  50% {
+    width: 30vw;
+  }
+  100% {
+    width: 90vw;
+  }
 }
 
 .task-slide.complete {
